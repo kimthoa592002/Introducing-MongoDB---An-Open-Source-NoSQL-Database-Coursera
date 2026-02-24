@@ -31,4 +31,17 @@ db.marks.aggregate([{"$litmit:2}])
 db.marks.aggregate([{"$sort":{"marks":1}}])
 db.marks.aggregate([{"$sort":{"marks":-1}}])
 
+# 4. Sort and limit
+db.marks.aggregate([
+{"$sort":{"marks":1},
+{"$limit":2}
+])
 
+# 5. Use group by to calculate the average 
+db.marks.aggregate([
+{
+  "$group":{"_id":"$subject, 
+            "average":{"$avg":"$marks"}
+            }
+}
+])
